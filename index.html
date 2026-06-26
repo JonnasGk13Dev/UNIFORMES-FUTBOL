@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido de Uniformes</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="card">
+
+            <h1>⚽ Pedido de Uniformes</h1>
+
+            <p id="contador">
+                Uniformes registrados: 0 / 15
+            </p>
+
+            <form id="formUniforme">
+
+                <label for="nombre">Nombre completo</label>
+                <input
+                    type="text"
+                    id="nombre"
+                    required
+                >
+
+                <label for="apodo">Apodo de la playera</label>
+                <input
+                    type="text"
+                    id="apodo"
+                    required
+                >
+
+                <label for="numero">Número de playera</label>
+                <input
+                    type="number"
+                    id="numero"
+                    min="1"
+                    max="99"
+                    required
+                >
+
+                <label for="talla">Talla</label>
+
+                <select id="talla" required>
+
+                    <option value="">Selecciona una talla</option>
+
+                    <option value="XS">XS</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
+                    <option value="XXXL">XXXL</option>
+
+                </select>
+
+                <label for="manga">Tipo de manga</label>
+
+                <select id="manga" required>
+
+                    <option value="">Selecciona una opción</option>
+
+                    <option value="Manga corta">
+                        Manga corta
+                    </option>
+
+                    <option value="Manga larga">
+                        Manga larga
+                    </option>
+
+                </select>
+
+                <label for="negro">
+                    ¿Ya le dieron al Negro?
+                </label>
+
+                <select id="negro" required>
+
+                    <option value="">Selecciona una opción</option>
+
+                    <option value="Sí">
+                        Sí
+                    </option>
+
+                    <option value="No">
+                        No
+                    </option>
+
+                </select>
+
+                <label for="observaciones">
+                    Observaciones
+                </label>
+
+                <textarea
+                    id="observaciones"
+                ></textarea>
+
+                <button type="submit">
+
+                    Registrar uniforme
+
+                </button>
+
+            </form>
+
+            <p id="mensaje"></p>
+
+        </section>
+
+        <section class="card">
+
+            <h2>📋 Registros</h2>
+
+            <div id="tablaRegistros">
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
