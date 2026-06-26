@@ -4,7 +4,7 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(express.json());
@@ -41,8 +41,16 @@ app.get("/api/uniformes", (req, res) => {
 app.post("/api/uniformes", (req, res) => {
   const { nombre, apodo, numero, talla, manga, negro, observaciones } = req.body;
 
-  if (!nombre || !apodo || !numero || !talla || !manga || !negro) {
-    return res.status(400).json({ mensaje: "Todos los campos obligatorios deben llenarse" });
+  if (!nombre || !apodo || !talla || !manga || !negro || !Number.isInteger(Number(numero))) {
+    return res.status(400).json({
+      mensaje: "Todos los campos obligatorios deben llenarse correctamente"
+    });
+  }
+
+  if (numero < 1 || numero > 99) {
+    return res.status(400).json({
+      mensaje: "El número debe estar entre 1 y 99"
+    });
   }
 
   db.get("SELECT COUNT(*) AS total FROM uniformes", [], (err, row) => {
@@ -60,7 +68,7 @@ app.post("/api/uniformes", (req, res) => {
       (nombre, apodo, numero, talla, manga, negro, observaciones)
       VALUES (?, ?, ?, ?, ?, ?, ?)
       `,
-      [nombre, apodo, numero, talla, manga, negro, observaciones],
+      [nombre, apodo, Number(numero), talla, manga, negro, observaciones],
       function (err) {
         if (err) {
           if (err.message.includes("UNIQUE")) {
@@ -96,5 +104,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+  console.log(`Servidor corriendo en el puerto ${PORT}`);
 });
