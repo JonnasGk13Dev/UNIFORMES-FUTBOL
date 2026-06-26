@@ -2,11 +2,9 @@ const form = document.getElementById("formUniforme");
 const tabla = document.getElementById("tablaRegistros");
 const contador = document.getElementById("contador");
 const mensaje = document.getElementById("mensaje");
-const respuesta = await fetch(API_URL);
-
-const registros = await respuesta.json();
 
 const API_URL = "/api/uniformes";
+
 async function cargarRegistros() {
   try {
     const respuesta = await fetch(API_URL);
@@ -89,7 +87,6 @@ form.addEventListener("submit", async function (event) {
 
 async function eliminarRegistro(id) {
   const confirmar = confirm("¿Seguro que quieres eliminar este registro?");
-
   if (!confirmar) return;
 
   try {
