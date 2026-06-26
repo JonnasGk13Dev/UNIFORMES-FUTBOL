@@ -6,8 +6,7 @@ const respuesta = await fetch(API_URL);
 
 const registros = await respuesta.json();
 
-const API_URL = "http://localhost:3000/api/uniformes";
-
+const API_URL = "/api/uniformes";
 async function cargarRegistros() {
   try {
     const respuesta = await fetch(API_URL);
